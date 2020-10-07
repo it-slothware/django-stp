@@ -1,0 +1,10 @@
+.idea/
+bin/
+dist/
+develop-eggs/
+eggs/
+inquisition_testing.egg-info/
+parts/
+
+.installed.cfg
+*.egg-info

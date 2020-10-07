@@ -1,0 +1,1 @@
+${buildout:bin-directory}/flake8 inquisition

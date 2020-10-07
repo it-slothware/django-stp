@@ -1,0 +1,9 @@
+#!/bin/bash
+
+${buildout:bin-directory}/increase-version
+${buildout:bin-directory}/python setup.py sdist upload -r itslothware
+
+git add setup.py
+git commit -m "Increase version number"
+BRANCH=$(git branch --show-current)
+git push origin $BRANCH

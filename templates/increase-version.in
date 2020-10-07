@@ -1,0 +1,33 @@
+#!${buildout:bin-directory}/python
+
+import re
+
+
+def increase_version():
+    with open('setup.py', 'r') as setupfile:
+        content = setupfile.read()
+
+    found_version = re.search(r'version=\"([0-9]+)\",', content)
+
+    if found_version is None:
+        print('No version number found. Exiting.')
+        return
+
+    try:
+        version = int(found_version.groups()[0])
+    except (ValueError, TypeError):
+        print('Invalid version value. Exiting.')
+        return
+    except KeyError:
+        print('This should never happen. If happens anyway, drink a beer')
+        return
+
+    version += 1
+
+    updated_content = re.sub(r'version="([0-9]+)",', 'version="{}",'.format(version), content)
+
+    with open('setup.py', 'w') as setupfile:
+        setupfile.write(updated_content)
+
+
+increase_version()
